@@ -5,7 +5,6 @@
 /** Struktura przechowuj¹ca dane dotycz¹ce filmu */
 struct Movie
 {
-	unsigned int Index;
 	std::string Title;
 	int Rating;
 };
@@ -26,13 +25,19 @@ public:
 	/** Odczytuje dane z pliku */
 	void ReadDataFromFile();
 
-	/** Dodaj nowy film do kontenera */
-	void AddMovie(int MovieIndex, std::string MovieTitle, int MovieRating);
-
 	/** Wyœwietla zgromadzone filmy */
 	void PrintMovies() const;
 
 	/** Iloœæ pobranych danych */
 	int Size;
+
+private:
+	/** 
+	 * Dodaj nowy film do kontenera
+	 * @param MovieTitle - tytu³ nowego filmu
+	 * @param MovieRating - ocena nowego filmu
+	 * @warning MovieIndex i MovieRating musz¹ zostaæ przekonwertowane z typu std::string na int funkcj¹ std::stoi
+	 */
+	void AddMovie(const std::string MovieTitle, const int MovieRating);
 };
 

@@ -3,6 +3,18 @@
 MergeSort::MergeSort(const int MovieContainerSize)
 	: DataReader(MovieContainerSize) { }
 
+void MergeSort::Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End)
+{
+	if (Begin < End)
+	{
+		int Mid = Begin + (End - Begin) / 2;
+
+		Sort(OutMovieContainer, Begin, Mid);
+		Sort(OutMovieContainer, Mid + 1, End);
+		Merge(OutMovieContainer, Begin, Mid, End);
+	}
+}
+
 void MergeSort::Merge(std::vector<Movie>& OutMovieContainer, const int Left, const int Mid, const int Right)
 {
 	const int SizeOfLeftSubarray = Mid - Left + 1;	// Iloœæ elementów w lewej po³owie kontenera
@@ -51,21 +63,5 @@ void MergeSort::Merge(std::vector<Movie>& OutMovieContainer, const int Left, con
 		OutMovieContainer[IndexOfMergedArray] = RightSubarray[IndexOfRightSubarray];
 		IndexOfRightSubarray++;
 		IndexOfMergedArray++;
-	}
-}
-
-void MergeSort::Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End)
-{
-	if (Begin >= End)
-	{
-		return;
-	}
-	else
-	{
-		int Mid = Begin + (End - Begin) / 2;
-
-		Sort(OutMovieContainer, Begin, Mid);
-		Sort(OutMovieContainer, Mid + 1, End);
-		Merge(OutMovieContainer, Begin, Mid, End);
 	}
 }

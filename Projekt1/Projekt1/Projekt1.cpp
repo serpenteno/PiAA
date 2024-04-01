@@ -1,5 +1,6 @@
 #include <iostream>
 #include "MergeSort.h"
+#include "QuickSort.h"
 
 int main()
 {
@@ -12,10 +13,17 @@ int main()
 		std::cin >> NumberOfData;
 	} while (NumberOfData <= 0);
 
-	MergeSort MergeSortedDatabase(NumberOfData);
+	/* MergeSort MergeSortedDatabase(NumberOfData);
 
 	MergeSortedDatabase.ReadDataFromFile();
 	MergeSortedDatabase.Sort(MergeSortedDatabase.Movies, 0, MergeSortedDatabase.Size - 1);
 	std::cout << "Po sortowaniu: " << std::endl;
-	MergeSortedDatabase.PrintMovies();
+	MergeSortedDatabase.PrintMovies(); */
+
+	QuickSort QuickSortedDatabase(NumberOfData);
+
+	QuickSortedDatabase.ReadDataFromFile();
+	QuickSortedDatabase.Sort(QuickSortedDatabase.Movies, 0, QuickSortedDatabase.Size - 1);
+	std::cout << "Po sortowaniu: " << std::endl;
+	QuickSortedDatabase.PrintMovies();
 }

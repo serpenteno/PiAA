@@ -130,10 +130,12 @@
     <ClCompile Include="DataReader.cpp" />
     <ClCompile Include="MergeSort.cpp" />
     <ClCompile Include="Projekt1.cpp" />
+    <ClCompile Include="QuickSort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataReader.h" />
     <ClInclude Include="MergeSort.h" />
+    <ClInclude Include="QuickSort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

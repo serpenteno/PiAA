@@ -51,7 +51,7 @@ void DataReader::ReadDataFromFile()
 				std::getline(SingleLine, Rating);	// Pobiera rating
 				if (!Rating.empty())				// Dodaj film tylko jeœli posiada rating
 				{
-					AddMovie(std::stoi(Index), Title, std::stoi(Rating));
+					AddMovie(Title, std::stoi(Rating));
 				}
 			}
 		}
@@ -63,10 +63,9 @@ void DataReader::ReadDataFromFile()
 
 }
 
-void DataReader::AddMovie(int MovieIndex, std::string MovieTitle, int MovieRating)
+void DataReader::AddMovie(const std::string MovieTitle, const int MovieRating)
 {
 	Movie Movie;
-	Movie.Index = MovieIndex;
 	Movie.Title = MovieTitle;
 	Movie.Rating = MovieRating;
 
@@ -77,6 +76,6 @@ void DataReader::PrintMovies() const
 {
 	for (const Movie Movie : Movies)
 	{
-		std::cout << Movie.Index << "\t Tytul: " << Movie.Title << ", Ocena: " << Movie.Rating << std::endl;
+		std::cout << "Tytul: " << Movie.Title << ", Ocena : " << Movie.Rating << std::endl;
 	}
 }
