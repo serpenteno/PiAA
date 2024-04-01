@@ -59,7 +59,7 @@ int QuickSort::Partition(std::vector<Movie>& OutMovieContainer, const int Begin,
 
     default:
         std::cout << "Unknown error has occured" << std::endl;
-        exit;
+        exit(1);
     }
 }
 

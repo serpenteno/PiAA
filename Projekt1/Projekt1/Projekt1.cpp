@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MergeSort.h"
 #include "QuickSort.h"
+#include "BucketSort.h"
 
 int main()
 {
@@ -20,10 +21,17 @@ int main()
 	std::cout << "Po sortowaniu: " << std::endl;
 	MergeSortedDatabase.PrintMovies(); */
 
-	QuickSort QuickSortedDatabase(NumberOfData);
+	/* QuickSort QuickSortedDatabase(NumberOfData);
 
 	QuickSortedDatabase.ReadDataFromFile();
 	QuickSortedDatabase.Sort(QuickSortedDatabase.Movies, 0, QuickSortedDatabase.Size - 1);
 	std::cout << "Po sortowaniu: " << std::endl;
-	QuickSortedDatabase.PrintMovies();
+	QuickSortedDatabase.PrintMovies(); */
+
+	BucketSort BucketSortedDatabase(NumberOfData);
+
+	BucketSortedDatabase.ReadDataFromFile();
+	BucketSortedDatabase.Sort(BucketSortedDatabase.Movies);
+	std::cout << "Po sortowaniu: " << std::endl;
+	BucketSortedDatabase.PrintMovies();
 }

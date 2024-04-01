@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BucketSort.cpp" />
     <ClCompile Include="DataReader.cpp" />
     <ClCompile Include="MergeSort.cpp" />
     <ClCompile Include="Projekt1.cpp" />
     <ClCompile Include="QuickSort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BucketSort.h" />
     <ClInclude Include="DataReader.h" />
     <ClInclude Include="MergeSort.h" />
     <ClInclude Include="QuickSort.h" />
