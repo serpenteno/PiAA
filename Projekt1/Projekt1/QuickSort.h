@@ -27,6 +27,9 @@ public:
 	*/
 	void Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End);
 
+	/** Zwraca rodzaj wybranego elementu osiowego */
+	int GetPivot() const { return PivotChoice; }
+
 private:
 	/**
 	 * Funkcja dziel¹ca kontener wzglêdem elementu osiowego

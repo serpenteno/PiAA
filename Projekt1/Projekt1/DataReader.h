@@ -31,6 +31,16 @@ public:
 	/** Iloœæ pobranych danych */
 	int Size;
 
+	/** Zwraca œredni¹ ocen kontenera */
+	float CalculateAverage() const { return float(SumOfRatings) / float(Size); }
+
+	/** Zwraca medianê ocen kontenera */
+	float CalculateMedian() const;
+
+protected:
+	/** Suma ocen z kontenera */
+	int SumOfRatings;
+
 private:
 	/** 
 	 * Dodaj nowy film do kontenera

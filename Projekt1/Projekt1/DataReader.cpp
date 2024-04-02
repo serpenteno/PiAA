@@ -6,6 +6,7 @@
 DataReader::DataReader(const int MovieContainerSize)
 {
 	Size = MovieContainerSize;
+	SumOfRatings = 0;
 }
 
 void DataReader::ReadDataFromFile()
@@ -52,6 +53,7 @@ void DataReader::ReadDataFromFile()
 				if (!Rating.empty())				// Dodaj film tylko jeœli posiada rating
 				{
 					AddMovie(Title, std::stoi(Rating));
+					SumOfRatings += std::stoi(Rating);
 				}
 			}
 		}
@@ -77,5 +79,17 @@ void DataReader::PrintMovies() const
 	for (const Movie Movie : Movies)
 	{
 		std::cout << "Tytul: " << Movie.Title << ", Ocena : " << Movie.Rating << std::endl;
+	}
+}
+
+float DataReader::CalculateMedian() const
+{
+	if (Size % 2 == 1)
+	{
+		return float(Movies.at(Size / 2).Rating);
+	}
+	else
+	{
+		return float(Movies.at(Size / 2).Rating + Movies.at((Size / 2) - 1).Rating) / 2.0;
 	}
 }

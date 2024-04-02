@@ -6,7 +6,7 @@ QuickSort::QuickSort(const int MovieContainerSize)
 {
     do
     {
-        std::cout << "Wybierz element osiowy (0 = pierwszy element, 1 = ostatni element): ";
+        std::cout << "Wybierz element osiowy (0 - pierwszy element, 1 - ostatni element): ";
         std::cin >> PivotChoice;
     } while (PivotChoice != 1 && PivotChoice != 0);
 }
