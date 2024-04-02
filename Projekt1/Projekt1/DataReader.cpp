@@ -6,6 +6,7 @@
 DataReader::DataReader(const int MovieContainerSize)
 {
 	Size = MovieContainerSize;
+	RealSize = 0;
 	SumOfRatings = 0;
 }
 
@@ -52,22 +53,25 @@ void DataReader::ReadDataFromFile()
 				std::getline(SingleLine, Rating);	// Pobiera rating
 				if (!Rating.empty())				// Dodaj film tylko jeœli posiada rating
 				{
-					AddMovie(Title, std::stoi(Rating));
+					AddMovie(std::stoi(Index), Title, std::stoi(Rating));
 					SumOfRatings += std::stoi(Rating);
 				}
 			}
 		}
+		Size = Movies.size(); // Ustawienie rzeczywistego rozmiaru kontenera
 	}
 	else
 	{
 		std::cout << "Nie znaleziono podanej sciezki." << std::endl;
 	}
+	File.close();
 
 }
 
-void DataReader::AddMovie(const std::string MovieTitle, const int MovieRating)
+void DataReader::AddMovie(const int MovieIndex, const std::string MovieTitle, const int MovieRating)
 {
 	Movie Movie;
+	Movie.Index = MovieIndex;
 	Movie.Title = MovieTitle;
 	Movie.Rating = MovieRating;
 
@@ -78,7 +82,7 @@ void DataReader::PrintMovies() const
 {
 	for (const Movie Movie : Movies)
 	{
-		std::cout << "Tytul: " << Movie.Title << ", Ocena : " << Movie.Rating << std::endl;
+		std::cout << Movie.Index << ".\t" << "Tytul: " << Movie.Title << ", Ocena : " << Movie.Rating << std::endl;
 	}
 }
 
@@ -90,6 +94,6 @@ float DataReader::CalculateMedian() const
 	}
 	else
 	{
-		return float(Movies.at(Size / 2).Rating + Movies.at((Size / 2) - 1).Rating) / 2.0;
+		return float(Movies.at(Size / 2).Rating + Movies.at((Size / 2) - 1).Rating) / 2.0f;
 	}
 }

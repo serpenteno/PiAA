@@ -24,7 +24,7 @@
     <ClCompile Include="MergeSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QuickSort.cpp">
+    <ClCompile Include="Quicksort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BucketSort.cpp">
@@ -38,7 +38,7 @@
     <ClInclude Include="MergeSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QuickSort.h">
+    <ClInclude Include="Quicksort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BucketSort.h">

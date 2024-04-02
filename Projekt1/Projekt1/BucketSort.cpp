@@ -3,7 +3,7 @@
 BucketSort::BucketSort(const int MovieContainerSize)
 	: DataReader(MovieContainerSize) { }
 
-void BucketSort::Sort(std::vector<Movie>& OutMovieContainer)
+void BucketSort::Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End)
 {
 	int MaxValue = Movies[0].Rating; // Maksymalna ocena w podanym kontenerze
 	int MinValue = Movies[0].Rating; // Minimalna ocena w podanym kontenerze
@@ -39,7 +39,7 @@ void BucketSort::Sort(std::vector<Movie>& OutMovieContainer)
 
 	for (int Bucket = 0; Bucket < Range; Bucket++)
 	{
-		int BucketSize = Buckets[Bucket].size(); // Rozmiar obecnego kube³ka
+		size_t BucketSize = Buckets[Bucket].size(); // Rozmiar obecnego kube³ka
 		if (BucketSize > 0)
 		{
 			for (int BucketIndex = 0; BucketIndex < BucketSize; BucketIndex++)

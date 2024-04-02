@@ -5,6 +5,7 @@
 /** Struktura przechowuj¹ca dane dotycz¹ce filmu */
 struct Movie
 {
+	int Index;
 	std::string Title;
 	int Rating;
 };
@@ -28,7 +29,7 @@ public:
 	/** Wyœwietla zgromadzone filmy */
 	void PrintMovies() const;
 
-	/** Iloœæ pobranych danych */
+	/** Liczba pobranych danych podana przez u¿ytkownika */
 	int Size;
 
 	/** Zwraca œredni¹ ocen kontenera */
@@ -37,6 +38,14 @@ public:
 	/** Zwraca medianê ocen kontenera */
 	float CalculateMedian() const;
 
+	/**
+	 * Funkcja sortuj¹ca metod¹ szybkiego sortowania
+	 * @param OutMovieContainer - sortowany kontener
+	 * @param Begin - element, od którego w³¹cznie kontener zostaje posortowany
+	 * @param End - element, do którego w³¹cznie kontener zostaje posortowany
+	*/
+	virtual void Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End) = 0;
+
 protected:
 	/** Suma ocen z kontenera */
 	int SumOfRatings;
@@ -44,10 +53,11 @@ protected:
 private:
 	/** 
 	 * Dodaj nowy film do kontenera
+	 * @param MovieIndex - indeks nowego filmu
 	 * @param MovieTitle - tytu³ nowego filmu
 	 * @param MovieRating - ocena nowego filmu
 	 * @warning MovieIndex i MovieRating musz¹ zostaæ przekonwertowane z typu std::string na int funkcj¹ std::stoi
 	 */
-	void AddMovie(const std::string MovieTitle, const int MovieRating);
+	void AddMovie(const int MovieIndex, const std::string MovieTitle, const int MovieRating);
 };
 

@@ -10,14 +10,14 @@
    Wybór elementu osiowego wp³ywa na równomiernoœæ podzia³u na podtablice (najprostszy wariant – 
    wybór pierwszego elementu tablicy – nie sprawdza siê w przypadku, gdy tablica jest ju¿ prawie uporz¹dkowana).
 */
-class QuickSort final : public DataReader
+class Quicksort final : public DataReader
 {
 public:
 	/**
 	 * Konstruktor
 	 * @param MovieContainerSize - rozmiar kontenera na filmy, które program pobiera z pliku
 	*/
-	QuickSort(const int MovieContainerSize);
+	Quicksort(const int MovieContainerSize);
 
 	/**
 	 * Funkcja sortuj¹ca metod¹ szybkiego sortowania
@@ -25,7 +25,7 @@ public:
 	 * @param Begin - element, od którego w³¹cznie kontener zostaje posortowany
 	 * @param End - element, do którego w³¹cznie kontener zostaje posortowany
 	*/
-	void Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End);
+	virtual void Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End) override;
 
 	/** Zwraca rodzaj wybranego elementu osiowego */
 	int GetPivot() const { return PivotChoice; }

@@ -6,7 +6,7 @@
 
 long long MeasureTime(const std::chrono::steady_clock::time_point Start, const std::chrono::steady_clock::time_point End)
 {
-	std::chrono::microseconds Duration = std::chrono::duration_cast<std::chrono::milliseconds>(End - Start);
+	auto Duration = std::chrono::duration_cast<std::chrono::milliseconds>(End - Start);
 	return Duration.count();
 }
 
@@ -18,9 +18,9 @@ int main()
 	do
 	{
 		system("cls");
-		std::cout << "Wybierz iloœæ danych:\n1. 10 000\n2. 100 000\n3. 500 000\n4. 1 000 000\n";
+		std::cout << "Wybierz iloœæ danych:\n1. 10 000\n2. 100 000\n3. 500 000\n4. 1 000 000\n5. Niestandardowa\n";
 		std::cin >> NumberOfData;
-	} while (NumberOfData < 1 && NumberOfData > 4);
+	} while (NumberOfData != 1 && NumberOfData != 2 && NumberOfData != 3 && NumberOfData != 4 && NumberOfData != 5);
 
 	switch (NumberOfData)
 	{
@@ -39,6 +39,15 @@ int main()
 	case 4:
 		NumberOfData = 1000000;
 		break;
+
+	case 5:
+		std::cin >> NumberOfData;
+		break;
+
+	default:
+		system("cls");
+		std::cout << "Unknown error has occured" << std::endl;
+		exit(1);
 	}
 
 	char SortingType;
@@ -49,80 +58,51 @@ int main()
 		std::cin >> SortingType;
 	} while (SortingType != 'M' && SortingType != 'Q' && SortingType != 'B');
 
+	DataReader* SortingAlgorythm; // WskaŸnik na wybrany algorytm
+
 	switch (SortingType)
 	{
 	case 'M':
 	{
-		MergeSort* MergeSortedDatabase = new MergeSort(NumberOfData);
-
-		std::chrono::steady_clock::time_point ReadingStart = std::chrono::high_resolution_clock::now();
-		MergeSortedDatabase->ReadDataFromFile();
-		std::chrono::steady_clock::time_point ReadingStop = std::chrono::high_resolution_clock::now();
-
-		system("cls");
-		std::cout << "-----Przed sortowaniem-----\n";
-		std::cout << "Iloœæ danych: " << NumberOfData << std::endl;
-		std::cout << "Czas odczytywania: " << MeasureTime(ReadingStart, ReadingStop) << std::endl;
-		std::cout << "Œrednia ocen: " << MergeSortedDatabase->CalculateAverage() << std::endl;
-		std::cout << "Mediana ocen: " << MergeSortedDatabase->CalculateMedian() << std::endl;
-
-		std::chrono::steady_clock::time_point SortingStart = std::chrono::high_resolution_clock::now();
-		MergeSortedDatabase->Sort(MergeSortedDatabase->Movies, 0, MergeSortedDatabase->Size - 1);
-		std::chrono::steady_clock::time_point SortingStop = std::chrono::high_resolution_clock::now();
-
-		std::cout << "-----Po sortowaniu-----\n";
-		std::cout << "Typ sortowania: " << SortingType << std::endl;
-		std::cout << "Czas sortowania: " << MeasureTime(SortingStart, SortingStop) << " ms" << std::endl;
+		SortingAlgorythm = new MergeSort(NumberOfData);
 		break;
 	}
 
 	case 'Q':
 	{
-		QuickSort* QuickSortedDatabase = new QuickSort(NumberOfData);
-
-		std::chrono::steady_clock::time_point ReadingStart = std::chrono::high_resolution_clock::now();
-		QuickSortedDatabase->ReadDataFromFile();
-		std::chrono::steady_clock::time_point ReadingStop = std::chrono::high_resolution_clock::now();
-
-		system("cls");
-		std::cout << "-----Przed sortowaniem-----\n";
-		std::cout << "Iloœæ danych: " << NumberOfData << std::endl;
-		std::cout << "Czas odczytywania: " << MeasureTime(ReadingStart, ReadingStop) << std::endl;
-		std::cout << "Œrednia ocen: " << QuickSortedDatabase->CalculateAverage() << std::endl;
-		std::cout << "Mediana ocen: " << QuickSortedDatabase->CalculateMedian() << std::endl;
-
-		std::chrono::steady_clock::time_point SortingStart = std::chrono::high_resolution_clock::now();
-		QuickSortedDatabase->Sort(QuickSortedDatabase->Movies, 0, QuickSortedDatabase->Size - 1);
-		std::chrono::steady_clock::time_point SortingStop = std::chrono::high_resolution_clock::now();
-
-		std::cout << "-----Po sortowaniu-----\n";
-		std::cout << "Typ sortowania: " << SortingType << std::endl;
-		std::cout << "Czas sortowania: " << MeasureTime(SortingStart, SortingStop) << " ms" << std::endl;
+		SortingAlgorythm = new Quicksort(NumberOfData);
+		break;
+	}
+	case 'B':
+	{
+		SortingAlgorythm = new BucketSort(NumberOfData);
 		break;
 	}
 
-	case 'B':
-	{
-		BucketSort* BucketSortedDatabase = new BucketSort(NumberOfData);
-
-		std::chrono::steady_clock::time_point ReadingStart = std::chrono::high_resolution_clock::now();
-		BucketSortedDatabase->ReadDataFromFile();
-		std::chrono::steady_clock::time_point ReadingStop = std::chrono::high_resolution_clock::now();
-
+	default:
 		system("cls");
-		std::cout << "-----Przed sortowaniem-----\n";
-		std::cout << "Iloœæ danych: " << NumberOfData << std::endl;
-		std::cout << "Czas odczytywania: " << MeasureTime(ReadingStart, ReadingStop) << std::endl;
-		std::cout << "Œrednia ocen: " << BucketSortedDatabase->CalculateAverage() << std::endl;
-		std::cout << "Mediana ocen: " << BucketSortedDatabase->CalculateMedian() << std::endl;
-
-		std::chrono::steady_clock::time_point SortingStart = std::chrono::high_resolution_clock::now();
-		BucketSortedDatabase->Sort(BucketSortedDatabase->Movies);
-		std::chrono::steady_clock::time_point SortingStop = std::chrono::high_resolution_clock::now();
-
-		std::cout << "-----Po sortowaniu-----\n";
-		std::cout << "Typ sortowania: " << SortingType << std::endl;
-		std::cout << "Czas sortowania: " << MeasureTime(SortingStart, SortingStop) << " ms" << std::endl;;
+		std::cout << "Unknown error has occured" << std::endl;
+		exit(1);
 	}
-	}
+
+	auto ReadingStart = std::chrono::high_resolution_clock::now();
+	SortingAlgorythm->ReadDataFromFile();
+	auto ReadingStop = std::chrono::high_resolution_clock::now();
+
+	system("cls");
+	std::cout << "-----Przed sortowaniem-----\n";
+	std::cout << "Rzeczywista iloœæ danych: " << SortingAlgorythm->Size << std::endl;
+	std::cout << "Czas odczytywania: " << MeasureTime(ReadingStart, ReadingStop) << " ms" << std::endl;
+	std::cout << "Œrednia ocen: " << SortingAlgorythm->CalculateAverage() << std::endl;
+	std::cout << "Mediana ocen: " << SortingAlgorythm->CalculateMedian() << std::endl;
+
+	auto SortingStart = std::chrono::high_resolution_clock::now();
+	SortingAlgorythm->Sort(SortingAlgorythm->Movies, 0, SortingAlgorythm->Size - 1);
+	auto SortingStop = std::chrono::high_resolution_clock::now();
+
+	std::cout << "-----Po sortowaniu-----\n";
+	std::cout << "Typ sortowania: " << SortingType << std::endl;
+	std::cout << "Czas sortowania: " << MeasureTime(SortingStart, SortingStop) << " ms" << std::endl;
+
+	return 0;
 }

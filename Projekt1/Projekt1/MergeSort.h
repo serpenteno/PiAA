@@ -22,7 +22,7 @@ public:
 	 * @param Begin - element, od którego w³¹cznie kontener zostaje posortowany
 	 * @param End - element, do którego w³¹cznie kontener zostaje posortowany
 	*/
-	void Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End);
+	virtual void Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End) override;
 
 private:
 	/**
