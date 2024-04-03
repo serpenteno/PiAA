@@ -91,7 +91,7 @@ int main()
 
 	system("cls");
 	std::cout << "-----Przed sortowaniem-----\n";
-	std::cout << "Rzeczywista iloœæ danych: " << SortingAlgorythm->Size << std::endl;
+	std::cout << "Rzeczywista iloœæ pobranych danych: " << SortingAlgorythm->Size << std::endl;
 	std::cout << "Czas odczytywania: " << MeasureTime(ReadingStart, ReadingStop) << " ms" << std::endl;
 	std::cout << "Œrednia ocen: " << SortingAlgorythm->CalculateAverage() << std::endl;
 	std::cout << "Mediana ocen: " << SortingAlgorythm->CalculateMedian() << std::endl;
@@ -101,8 +101,10 @@ int main()
 	auto SortingStop = std::chrono::high_resolution_clock::now();
 
 	std::cout << "-----Po sortowaniu-----\n";
-	std::cout << "Typ sortowania: " << SortingType << std::endl;
+	std::cout << "Typ sortowania: " << SortingAlgorythm->Name << std::endl;
 	std::cout << "Czas sortowania: " << MeasureTime(SortingStart, SortingStop) << " ms" << std::endl;
+
+	delete SortingAlgorythm;
 
 	return 0;
 }

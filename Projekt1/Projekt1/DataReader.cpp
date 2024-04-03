@@ -6,7 +6,6 @@
 DataReader::DataReader(const int MovieContainerSize)
 {
 	Size = MovieContainerSize;
-	RealSize = 0;
 	SumOfRatings = 0;
 }
 
@@ -58,7 +57,7 @@ void DataReader::ReadDataFromFile()
 				}
 			}
 		}
-		Size = Movies.size(); // Ustawienie rzeczywistego rozmiaru kontenera
+		Size = std::_Convert_size<int, size_t>(Movies.size()); // Ustawienie rzeczywistego rozmiaru kontenera
 	}
 	else
 	{

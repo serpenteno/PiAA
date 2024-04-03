@@ -5,6 +5,8 @@ MergeSort::MergeSort(const int MovieContainerSize)
 
 void MergeSort::Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End)
 {
+	Name = "MergeSort";
+
 	if (Begin < End)
 	{
 		int Mid = Begin + (End - Begin) / 2;

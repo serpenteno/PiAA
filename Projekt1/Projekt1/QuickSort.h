@@ -41,6 +41,5 @@ private:
 
 	/** U¿ytkownik wybiera element osiowy */
 	int PivotChoice;
-
 };
 

@@ -1,7 +1,10 @@
 #include "BucketSort.h"
 
 BucketSort::BucketSort(const int MovieContainerSize)
-	: DataReader(MovieContainerSize) { }
+	: DataReader(MovieContainerSize) 
+{
+	Name = "BucketSort";
+}
 
 void BucketSort::Sort(std::vector<Movie>& OutMovieContainer, const int Begin, const int End)
 {

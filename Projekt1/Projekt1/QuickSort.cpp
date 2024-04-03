@@ -4,6 +4,7 @@
 Quicksort::Quicksort(const int MovieContainerSize)
 	: DataReader(MovieContainerSize) 
 {
+    Name = "Quicksort";
     do
     {
         std::cout << "Wybierz element osiowy (0 - pierwszy element, 1 - œrodkowy element, 2 - ostatni element): ";

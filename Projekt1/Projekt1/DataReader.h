@@ -20,6 +20,9 @@ public:
 	*/
 	DataReader(const int MovieContainerSize);
 
+	/** Nazwa wybranego algorytmu */
+	std::string Name;
+
 	/** Kontener na filmy */
 	std::vector<Movie> Movies;
 
