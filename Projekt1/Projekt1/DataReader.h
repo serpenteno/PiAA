@@ -36,10 +36,10 @@ public:
 	int Size;
 
 	/** Zwraca œredni¹ ocen kontenera */
-	float CalculateAverage() const { return float(SumOfRatings) / float(Size); }
+	double CalculateAverage() const { return double(SumOfRatings) / double(Size); }
 
 	/** Zwraca medianê ocen kontenera */
-	float CalculateMedian() const;
+	double CalculateMedian() const;
 
 	/**
 	 * Funkcja sortuj¹ca metod¹ szybkiego sortowania

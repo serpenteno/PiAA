@@ -85,14 +85,14 @@ void DataReader::PrintMovies() const
 	}
 }
 
-float DataReader::CalculateMedian() const
+double DataReader::CalculateMedian() const
 {
 	if (Size % 2 == 1)
 	{
-		return float(Movies.at(Size / 2).Rating);
+		return double(Movies.at(Size / 2).Rating);
 	}
 	else
 	{
-		return float(Movies.at(Size / 2).Rating + Movies.at((Size / 2) - 1).Rating) / 2.0f;
+		return double(Movies.at(Size / 2).Rating + Movies.at((Size / 2) - 1).Rating) / 2.0;
 	}
 }
