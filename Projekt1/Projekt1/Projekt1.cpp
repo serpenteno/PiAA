@@ -18,9 +18,9 @@ int main()
 	do
 	{
 		system("cls");
-		std::cout << "Wybierz iloœæ danych:\n1. 10 000\n2. 100 000\n3. 500 000\n4. 1 000 000\n5. Niestandardowa\n";
+		std::cout << "Wybierz iloœæ danych:\n1. 10 000\n2. 100 000\n3. 500 000\n4. 1 000 000\n5. Niestandardowa\n6. WyjdŸ\n";
 		std::cin >> NumberOfData;
-	} while (NumberOfData != 1 && NumberOfData != 2 && NumberOfData != 3 && NumberOfData != 4 && NumberOfData != 5);
+	} while (NumberOfData != 1 && NumberOfData != 2 && NumberOfData != 3 && NumberOfData != 4 && NumberOfData != 5 && NumberOfData != 6);
 
 	switch (NumberOfData)
 	{
@@ -44,10 +44,13 @@ int main()
 		std::cin >> NumberOfData;
 		break;
 
+	case 6:
+		return 0;
+
 	default:
 		system("cls");
 		std::cout << "Unknown error has occured" << std::endl;
-		exit(1);
+		return 1;
 	}
 
 	char SortingType;
@@ -82,7 +85,7 @@ int main()
 	default:
 		system("cls");
 		std::cout << "Unknown error has occured" << std::endl;
-		exit(1);
+		return 1;
 	}
 
 	auto ReadingStart = std::chrono::high_resolution_clock::now();
