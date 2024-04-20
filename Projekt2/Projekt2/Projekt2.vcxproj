@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="GraphGenerator.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Projekt2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dijkstra.h" />

@@ -7,7 +7,7 @@
 using namespace std;
 
 const uint32_t MinGeneratedNumber = 1;
-const uint32_t MaxGeneratedNumber = numeric_limits<uint32_t>::max() - 1;
+const uint32_t MaxGeneratedNumber = 10;
 
 class Edge;
 

@@ -2,6 +2,7 @@
 #include "Dijkstra.h"
 
 #include <random>
+#include <cmath>
 
 static uint32_t GenerateRandomNumber()
 {
@@ -15,34 +16,83 @@ static uint32_t GenerateRandomNumber()
 vector<vector<uint32_t>> GenerateRandomGraph_AdjacencyMatrix(uint32_t Vertices, double Density)
 {
     vector<vector<uint32_t>> Graph(Vertices, vector<uint32_t>(Vertices, 0));
-    for (uint32_t i = 0; i < Vertices; i++)
+    uint32_t Edges = static_cast<uint32_t>(ceil(Vertices * Density));
+    
+    uint32_t NumberOfEdges = 0;
+    while (NumberOfEdges < Edges)
     {
-        for (uint32_t j = i + 1; j < Vertices; j++)
+        for (uint32_t i = 0; i < Vertices; i++)
         {
-            if (GenerateRandomNumber() <= Density * MaxGeneratedNumber)
+            for (uint32_t j = i + 1; j < Vertices; j++)
             {
-                Graph[i][j] = GenerateRandomNumber();
-                Graph[j][i] = Graph[i][j];
+                if (Density < 1.0)
+                {
+                    if (NumberOfEdges >= Edges)
+                    {
+                        break;
+                    }
+                    if (GenerateRandomNumber() % 10 == 0)
+                    {
+                        if (Graph[i][j] <= 0)
+                        {
+                            Graph[i][j] = GenerateRandomNumber();
+                            Graph[j][i] = Graph[i][j];
+                            NumberOfEdges++;
+                        }
+                    }
+                }
+                else
+                {
+                    if (Graph[i][j] <= 0)
+                    {
+                        Graph[i][j] = GenerateRandomNumber();
+                        Graph[j][i] = Graph[i][j];
+                        NumberOfEdges++;
+                    }
+                }
             }
         }
     }
 
     return Graph;
 }
-
+// TODO: Naprawiæ generator grafu jako lista s¹siedztwa.
 vector<vector<Edge>> GenerateRandomGraph_AdjacencyList(uint32_t Vertices, double Density)
 {
     vector<vector<Edge>> Graph(Vertices);
+    uint32_t Edges = static_cast<uint32_t>(ceil(Vertices * Density));
 
-    for (uint32_t i = 0; i < Vertices; i++)
+    uint32_t NumberOfEdges = 0;
+    while (NumberOfEdges < Edges)
     {
-        for (uint32_t j = i + 1; j < Vertices; j++)
+        for (uint32_t i = 0; i < Vertices; i++)
         {
-            if (GenerateRandomNumber() < Density * MaxGeneratedNumber) 
+            for (uint32_t j = i + 1; j < Vertices; j++)
             {
-                uint32_t Weight = GenerateRandomNumber(); // Losowa waga krawêdzi (od 1 do 10)
-                Graph[i].push_back(Edge(j, Weight));
-                Graph[j].push_back(Edge(i, Weight)); // Graf nieskierowany
+                if (Density < 1.0)
+                {
+                    if (NumberOfEdges >= Edges)
+                    {
+                        break;
+                    }
+                    if (GenerateRandomNumber() % 10 == 0)
+                    {
+                        if (Graph[i][j].GetWeight() <= 0)
+                        {
+                            uint32_t Weight = GenerateRandomNumber();
+                            Graph[i].push_back(Edge(j, Weight));
+                            Graph[j].push_back(Edge(i, Weight));
+                            NumberOfEdges++;
+                        }
+                    }
+                }
+                else
+                {
+                    uint32_t Weight = GenerateRandomNumber();
+                    Graph[i].push_back(Edge(j, Weight));
+                    Graph[j].push_back(Edge(i, Weight));
+                    NumberOfEdges++;
+                }
             }
         }
     }

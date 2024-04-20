@@ -20,8 +20,11 @@ public:
 	 */
 	Edge(const uint32_t TargetVertex, const uint32_t Weight);
 
-	uint32_t GetTargetVertex() const	{ return TargetVertex; }
-	uint32_t GetWeight() const			{ return Weight; }
+	uint32_t GetTargetVertex() const				{ return TargetVertex; }
+	void SetTargetVertex(uint32_t NewTargetVertex)	{ TargetVertex = NewTargetVertex; }
+
+	uint32_t GetWeight() const					{ return Weight; }
+	void SetTargetWeight(uint32_t NewWeight)	{ Weight = NewWeight; }
 
 private:
 	uint32_t TargetVertex;
