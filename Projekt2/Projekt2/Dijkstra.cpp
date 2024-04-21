@@ -6,7 +6,7 @@
 
 #define INF numeric_limits<uint32_t>::max()
 
-Edge::Edge(const uint32_t TargetVertex, const uint32_t Weight)
+Edge::Edge(const uint32_t Weight, const uint32_t TargetVertex)
 {
 	this->TargetVertex = TargetVertex;
 	this->Weight = Weight;

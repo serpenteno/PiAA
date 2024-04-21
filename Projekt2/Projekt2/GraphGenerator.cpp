@@ -56,7 +56,7 @@ vector<vector<uint32_t>> GenerateRandomGraph_AdjacencyMatrix(uint32_t Vertices, 
 
     return Graph;
 }
-// TODO: Naprawiæ generator grafu jako lista s¹siedztwa.
+
 vector<vector<Edge>> GenerateRandomGraph_AdjacencyList(uint32_t Vertices, double Density)
 {
     vector<vector<Edge>> Graph(Vertices);
@@ -75,22 +75,17 @@ vector<vector<Edge>> GenerateRandomGraph_AdjacencyList(uint32_t Vertices, double
                     {
                         break;
                     }
-                    if (GenerateRandomNumber() % 10 == 0)
-                    {
-                        if (Graph[i][j].GetWeight() <= 0)
-                        {
-                            uint32_t Weight = GenerateRandomNumber();
-                            Graph[i].push_back(Edge(j, Weight));
-                            Graph[j].push_back(Edge(i, Weight));
-                            NumberOfEdges++;
-                        }
-                    }
+                    uint32_t Weight = GenerateRandomNumber();
+                    Graph[i].push_back(Edge(Weight, j));
+                    Graph[j].push_back(Edge(Weight, i));
+                    NumberOfEdges++;
+                    i++;
                 }
                 else
                 {
                     uint32_t Weight = GenerateRandomNumber();
-                    Graph[i].push_back(Edge(j, Weight));
-                    Graph[j].push_back(Edge(i, Weight));
+                    Graph[i].push_back(Edge(Weight, j));
+                    Graph[j].push_back(Edge(Weight, i));
                     NumberOfEdges++;
                 }
             }

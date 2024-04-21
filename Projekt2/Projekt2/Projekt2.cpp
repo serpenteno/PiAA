@@ -113,22 +113,23 @@ int main()
 
         case '2':
         {
-            vector<vector<Edge>> Graph = GenerateRandomGraph_AdjacencyList(5, GraphDensity);
-            for (uint32_t i = 0; i < Graph.size(); i++)
+            vector<vector<Edge>> Graph = GenerateRandomGraph_AdjacencyList(NumberOfVertices, GraphDensity);
+            /*for (uint32_t i = 0; i < Graph.size(); i++)
             {
+                cout << i << '\t';
                 for (const Edge& Edge : Graph[i])
                 {
-                    cout << Edge.GetWeight() << "\t";
+                    cout << Edge.GetWeight() << " " << Edge.GetTargetVertex() << "\t";
                 }
                 cout << endl;
-            }
-            /*OperationStart = chrono::high_resolution_clock::now();
+            }*/
+            OperationStart = chrono::high_resolution_clock::now();
             for (uint16_t i = 0; i < Repetition; i++)
             {
                 Dijkstra(Graph, 0);
             }
             OperationEnd = chrono::high_resolution_clock::now();
-            TotalOperationTime = chrono::duration_cast<chrono::microseconds>((OperationEnd - OperationStart));*/
+            TotalOperationTime = chrono::duration_cast<chrono::microseconds>((OperationEnd - OperationStart));
             break;
         }
 
