@@ -49,15 +49,6 @@ Dijkstra::Dijkstra(const vector<vector<uint32_t>>& Graph, const uint32_t Startin
             }
         }
     }
-
-    /*cout << "Najkrótsze odleg³oœci od wierzcho³ka " << StartingVertex << ":" << endl;
-    for (int i = 0; i < Vertices; ++i) {
-        cout << "Wierzcho³ek " << i << ": ";
-        if (DistanceToTheVertex[i] == INF)
-            cout << "Brak po³¹czenia" << endl;
-        else
-            cout << DistanceToTheVertex[i] << endl;
-    }*/
 }
 
 Dijkstra::Dijkstra(const vector<vector<Edge>>& Graph, const uint32_t StartingVertex)
@@ -100,18 +91,4 @@ Dijkstra::Dijkstra(const vector<vector<Edge>>& Graph, const uint32_t StartingVer
             }
         }
     }
-
-    /*cout << "Odleg³oœci od wierzcho³ka " << StartingVertex << " do pozosta³ych wierzcho³ków:" << endl;
-    for (uint32_t i = 0; i < Vertices; i++) 
-    {
-        cout << "Wierzcho³ek " << i << ": ";
-        if (DistanceToTheVertex[i] != INF)
-        {
-            cout << DistanceToTheVertex[i] << endl;
-        }
-        else
-        {
-            cout << "Brak po³¹czenia" << endl;
-        }
-    }*/
 }
