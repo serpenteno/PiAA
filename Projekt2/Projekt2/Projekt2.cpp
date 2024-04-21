@@ -59,7 +59,7 @@ int main()
         do
         {
             system("cls");
-            cout << "Podaj gêstoœæ grafu:\n1. 25%\n2. 50%\n3. 75%\n4. 100%\n";
+            cout << "Podaj gêstoœæ grafu:\n1. 25%\n2. 50%\n3. 75%\n4. Graf pe³ny\n";
             cin >> GraphDencity_Opt;
         } while (GraphDencity_Opt != '1' && GraphDencity_Opt != '2' && GraphDencity_Opt != '3' && GraphDencity_Opt != '4');
 
@@ -95,16 +95,27 @@ int main()
         chrono::high_resolution_clock::time_point OperationStart;
         chrono::high_resolution_clock::time_point OperationEnd;
         chrono::microseconds TotalOperationTime;
+
         switch (RepresentationType_Opt)
         {
         case '1':
         {
-            vector<vector<uint32_t>>Graph = GenerateRandomGraph_AdjacencyMatrix(NumberOfVertices, GraphDensity);
-          
+            vector<vector<vector<uint32_t>>> Graphs(Repetition);
+            cout << "Generowanie " << Repetition << " grafów...\n";
+            for (uint32_t i = 0; i < Repetition; i++)
+            {
+                Graphs[i] = GenerateRandomGraph_AdjacencyMatrix(NumberOfVertices, GraphDensity);
+                cout << "Liczba wygenerowanych grafów: " << i + 1 << "\r";
+            }
+            cout << "\nGenerowanie grafów zakoñczone!" << endl;
+            system("pause");
+
+            system("cls");
+            cout << "Wyszukiwanie najkrótszej drogi...\n";
             OperationStart = chrono::high_resolution_clock::now();
             for (uint16_t i = 0; i < Repetition; i++)
             {
-                Dijkstra(Graph, 0);
+                Dijkstra(Graphs[i], 0);
             }
             OperationEnd = chrono::high_resolution_clock::now();
             TotalOperationTime = chrono::duration_cast<chrono::microseconds>((OperationEnd - OperationStart));
@@ -113,20 +124,22 @@ int main()
 
         case '2':
         {
-            vector<vector<Edge>> Graph = GenerateRandomGraph_AdjacencyList(NumberOfVertices, GraphDensity);
-            /*for (uint32_t i = 0; i < Graph.size(); i++)
+            vector<vector<vector<Edge>>> Graphs(Repetition);
+            cout << "Generowanie " << Repetition << " grafów...\n";
+            for (uint32_t i = 0; i < Repetition; i++)
             {
-                cout << i << '\t';
-                for (const Edge& Edge : Graph[i])
-                {
-                    cout << Edge.GetWeight() << " " << Edge.GetTargetVertex() << "\t";
-                }
-                cout << endl;
-            }*/
+                Graphs[i] = GenerateRandomGraph_AdjacencyList(NumberOfVertices, GraphDensity);
+                cout << "Liczba wygenerowanych grafów: " << i + 1 << "\r";
+            }
+            cout << "\nGenerowanie grafów zakoñczone!" << endl;
+            system("pause");
+
+            system("cls");
+            cout << "Wyszukiwanie najkrótszej drogi...\n";
             OperationStart = chrono::high_resolution_clock::now();
             for (uint16_t i = 0; i < Repetition; i++)
             {
-                Dijkstra(Graph, 0);
+                Dijkstra(Graphs[i], 0);
             }
             OperationEnd = chrono::high_resolution_clock::now();
             TotalOperationTime = chrono::duration_cast<chrono::microseconds>((OperationEnd - OperationStart));
