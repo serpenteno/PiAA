@@ -46,8 +46,9 @@ public:
 	 * 
 	 * @param Graph Graf w postaci macierzy s¹siedztwa.
 	 * @param StartingVertex Wierzcho³ek, dla którego wyznaczane s¹ najkrótsze œcie¿ki do wszystkich pozosta³ych wierzcho³ków.
+	 * @param bSimulate Prymitywna symulacja dzia³ania algorytmu Dijkstry.
 	 */
-	Dijkstra(const vector<vector<uint32_t>>& Graph, const uint32_t StartingVertex);
+	Dijkstra(const vector<vector<uint32_t>>& Graph, const uint32_t StartingVertex, const bool bSimulate);
 
 	/**
 	 * Konstruktor klasy Dijkstra.
@@ -56,8 +57,9 @@ public:
 	 *
 	 * @param Graph Graf w postaci listy s¹siedztwa.
 	 * @param StartingVertex Wierzcho³ek, dla którego wyznaczane s¹ najkrótsze œcie¿ki do wszystkich pozosta³ych wierzcho³ków.
+	 * @param bSimulate Prymitywna symulacja dzia³ania algorytmu Dijkstry.
 	 */
-	Dijkstra(const vector<vector<Edge>>& Graph, const uint32_t StartingVertex);
+	Dijkstra(const vector<vector<Edge>>& Graph, const uint32_t StartingVertex, const bool bSimulate);
 
 private:
 	uint32_t Vertices;

@@ -17,6 +17,9 @@ int main()
     static double GraphDensity;
     static char RepresentationType_Opt;
 
+    chrono::high_resolution_clock::time_point OperationStart;
+    chrono::high_resolution_clock::time_point OperationEnd;
+
     while (true)
     {
         do
@@ -88,72 +91,95 @@ int main()
         do
         {
             system("cls");
-            cout << "Podaj typ reprezentcji grafu:\n1. Macierz s¹siedztwa\n2. Lista s¹siedztwa\n";
+            cout << "Podaj typ reprezentcji grafu:\nM. Macierz s¹siedztwa\nL. Lista s¹siedztwa\n";
             cin >> RepresentationType_Opt;
-        } while (RepresentationType_Opt != '1' && RepresentationType_Opt != '2');
+        } while (RepresentationType_Opt != 'M' && RepresentationType_Opt != 'L');
 
-        chrono::high_resolution_clock::time_point OperationStart;
-        chrono::high_resolution_clock::time_point OperationEnd;
-        chrono::microseconds TotalOperationTime;
+        char Simulate;
+        bool bSimulateDijkstra;
+        do
+        {
+            cout << "Przeprowadziæ symulacjê? [y/n]: ";
+            cin >> Simulate;
+        } while (Simulate != 'y' && Simulate != 'n');
 
+        switch (Simulate)
+        {
+        case 'y':
+            bSimulateDijkstra = true;
+            break;
+
+        case 'n':
+            bSimulateDijkstra = false;
+            break;
+        }
+
+        double SummedTime = 0.0;
         switch (RepresentationType_Opt)
         {
-        case '1':
-        {
-            vector<vector<vector<uint32_t>>> Graphs(Repetition);
-            cout << "Generowanie " << Repetition << " grafów...\n";
-            for (uint32_t i = 0; i < Repetition; i++)
+            case 'M':
             {
-                Graphs[i] = GenerateRandomGraph_AdjacencyMatrix(NumberOfVertices, GraphDensity);
-                cout << "Liczba wygenerowanych grafów: " << i + 1 << "\r";
-            }
-            cout << "\nGenerowanie grafów zakoñczone!" << endl;
-            system("pause");
+                vector<vector<vector<uint32_t>>> Graphs(Repetition);
+                cout << "Generowanie " << Repetition << " grafów...\n";
+                for (uint32_t i = 0; i < Repetition; i++)
+                {
+                    Graphs[i] = GenerateRandomGraph_AdjacencyMatrix(NumberOfVertices, GraphDensity);
+                    cout << "Liczba wygenerowanych grafów: " << i + 1 << "\r";
+                }
+                cout << "\nGenerowanie grafów zakoñczone!" << endl;
+                system("pause");
 
-            system("cls");
-            cout << "Wyszukiwanie najkrótszej drogi...\n";
-            OperationStart = chrono::high_resolution_clock::now();
-            for (uint16_t i = 0; i < Repetition; i++)
-            {
-                Dijkstra(Graphs[i], 0);
+                system("cls");
+                cout << "Wyszukiwanie najkrótszej drogi...\n";
+                for (uint16_t i = 0; i < Repetition; i++)
+                {
+                    OperationStart = chrono::high_resolution_clock::now();
+                    Dijkstra(Graphs[i], 0, bSimulateDijkstra);
+                    OperationEnd = chrono::high_resolution_clock::now();
+                    if (bSimulateDijkstra)
+                    {
+                        break;
+                    }
+                    SummedTime += chrono::duration_cast<chrono::microseconds>(OperationEnd - OperationStart).count();
+                }
+                break;
             }
-            OperationEnd = chrono::high_resolution_clock::now();
-            TotalOperationTime = chrono::duration_cast<chrono::microseconds>((OperationEnd - OperationStart));
-            break;
+
+            case 'L':
+            {
+                vector<vector<vector<Edge>>> Graphs(Repetition);
+                cout << "Generowanie " << Repetition << " grafów...\n";
+                for (uint32_t i = 0; i < Repetition; i++)
+                {
+                    Graphs[i] = GenerateRandomGraph_AdjacencyList(NumberOfVertices, GraphDensity);
+                    cout << "Liczba wygenerowanych grafów: " << i + 1 << "\r";
+                }
+                cout << "\nGenerowanie grafów zakoñczone!" << endl;
+                system("pause");
+
+                system("cls");
+                cout << "Wyszukiwanie najkrótszej drogi...\n";
+                for (uint16_t i = 0; i < Repetition; i++)
+                {
+                    OperationStart = chrono::high_resolution_clock::now();
+                    Dijkstra(Graphs[i], 0, bSimulateDijkstra);
+                    OperationEnd = chrono::high_resolution_clock::now();
+                    if (bSimulateDijkstra)
+                    {
+                        break;
+                    }
+                    SummedTime += chrono::duration_cast<chrono::microseconds>(OperationEnd - OperationStart).count();
+                }
+                break;
+            }
+
+            default:
+                return 1;
         }
-
-        case '2':
-        {
-            vector<vector<vector<Edge>>> Graphs(Repetition);
-            cout << "Generowanie " << Repetition << " grafów...\n";
-            for (uint32_t i = 0; i < Repetition; i++)
-            {
-                Graphs[i] = GenerateRandomGraph_AdjacencyList(NumberOfVertices, GraphDensity);
-                cout << "Liczba wygenerowanych grafów: " << i + 1 << "\r";
-            }
-            cout << "\nGenerowanie grafów zakoñczone!" << endl;
-            system("pause");
-
-            system("cls");
-            cout << "Wyszukiwanie najkrótszej drogi...\n";
-            OperationStart = chrono::high_resolution_clock::now();
-            for (uint16_t i = 0; i < Repetition; i++)
-            {
-                Dijkstra(Graphs[i], 0);
-            }
-            OperationEnd = chrono::high_resolution_clock::now();
-            TotalOperationTime = chrono::duration_cast<chrono::microseconds>((OperationEnd - OperationStart));
-            break;
-        }
-
-        default:
-            return 1;
-        }
-
         cout << "Liczba wierzcho³ków: " << NumberOfVertices << endl;
         cout << "Gêstoœæ grafu: " << GraphDensity << endl;
         cout << "Typ reprezentacji grafu: " << RepresentationType_Opt << endl;
-        cout << "Ca³kowity czas wykonywania operacji: " << TotalOperationTime.count() / Repetition << " us" << endl;
+        cout << "Ca³kowity czas wykonywania operacji: " << SummedTime / Repetition << " us" << endl;
         system("pause");
     }
 

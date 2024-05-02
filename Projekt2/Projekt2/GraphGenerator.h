@@ -13,12 +13,14 @@ class Edge;
 
 /**
  * Generuje losowe liczby ca³kowite z zakresu [FirstGeneratedNumber, LastGeneratedNumber].
+ * 
  * @return Losowa liczba ca³kowita z zakresu [FirstGeneratedNumber, LastGeneratedNumber].
  */
 uint32_t GenerateRandomNumber();
 
 /**
  * Generuje losowy graf o okreœlonej gêstoœci reprezentowany w postaci macierzy s¹siedztwa.
+ * 
  * @param Verticies Liczba wierzcho³ków generowanego grafu.
  * @param Density Gêstoœæ generowanego grafu.
  * @return Graf reprezentowany w postaci macierzy s¹siedztwa.
@@ -27,6 +29,7 @@ vector<vector<uint32_t>> GenerateRandomGraph_AdjacencyMatrix(uint32_t Vertices, 
 
 /**
  * Generuje losowy graf o okreœlonej gêstoœci reprezentowany w postaci listy s¹siedztwa.
+ * 
  * @param Verticies Liczba wierzcho³ków generowanego grafu.
  * @param Density Gêstoœæ generowanego grafu.
  * @return Graf reprezentowany w postaci listy s¹siedztwa.

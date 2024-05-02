@@ -75,11 +75,20 @@ vector<vector<Edge>> GenerateRandomGraph_AdjacencyList(uint32_t Vertices, double
                     {
                         break;
                     }
-                    uint32_t Weight = GenerateRandomNumber();
-                    Graph[i].push_back(Edge(Weight, j));
-                    Graph[j].push_back(Edge(Weight, i));
-                    NumberOfEdges++;
-                    i++;
+                    if (GenerateRandomNumber() % 10 == 0)
+                    {
+                        for (const Edge& Edge : Graph[i])
+                        {
+                            if (Edge.GetTargetVertex() == j)
+                            {
+                                continue;
+                            }
+                        }
+                        uint32_t Weight = GenerateRandomNumber();
+                        Graph[i].push_back(Edge(Weight, j));
+                        Graph[j].push_back(Edge(Weight, i));
+                        NumberOfEdges++;
+                    }
                 }
                 else
                 {
