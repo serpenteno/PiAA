@@ -1,5 +1,12 @@
-# PiAA
+# Projektowanie i analiza algorytmów
 
-Projekt1 - Sortowanie
+# Projekt 1 - Sortowanie
+Implementacja algorytmów sortowania:
+- Przez scalanie/Merge sort
+- Szybkie/Quicksort (dla osi obrotu/pivotu na początku, końcu i w środku)
+- Kubełkowe/Bucket sort
 
-Projekt2 - Grafy
+# Projekt 2 - Grafy
+Implementacja algorytmu Dijkstry dla grafów o różnej gęstości, reprezentowanego przez:
+- Macierz sąsiedztwa
+- Listę sąsiedztwa
