@@ -120,12 +120,12 @@ Dijkstra::Dijkstra(const vector<vector<uint32_t>>& Graph, const uint32_t Startin
 
 Dijkstra::Dijkstra(const vector<vector<Edge>>& Graph, const uint32_t StartingVertex, const bool bSimulate)
 {
+    Vertices = static_cast<uint32_t>(Graph.size());
+ 
     switch (bSimulate)
     {
     case true:
     {
-        Vertices = 10;
-
         vector<uint32_t> DistanceToTheVertex(Vertices, INF);
         vector<bool> bHasTheVertexBeenVisited(Vertices, false);
 
@@ -189,8 +189,6 @@ Dijkstra::Dijkstra(const vector<vector<Edge>>& Graph, const uint32_t StartingVer
 
     case false:
     {
-        Vertices = static_cast<uint32_t>(Graph.size());
-
         vector<uint32_t> DistanceToTheVertex(Vertices, INF);
         vector<bool> bHasTheVertexBeenVisited(Vertices, false);
 
@@ -216,7 +214,7 @@ Dijkstra::Dijkstra(const vector<vector<Edge>>& Graph, const uint32_t StartingVer
                 uint32_t NextVertex = Edge.GetTargetVertex();
                 uint32_t Weight = Edge.GetWeight();
 
-                if (!bHasTheVertexBeenVisited[NextVertex])
+                if (!bHasTheVertexBeenVisited[NextVertex] && DistanceToTheVertex[CurrentVertex] != INF)
                 {
                     uint32_t DistanceToNextVertex = DistanceToTheVertex[CurrentVertex] + Weight;
                     if (DistanceToNextVertex < DistanceToTheVertex[NextVertex])

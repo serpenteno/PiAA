@@ -65,7 +65,7 @@ vector<vector<Edge>> GenerateRandomGraph_AdjacencyList(uint32_t Vertices, double
     uint32_t NumberOfEdges = 0;
     while (NumberOfEdges < Edges)
     {
-        for (uint32_t i = 0; i < Vertices; i++)
+        for (uint32_t i = 0; i < Vertices - 1; i++)
         {
             for (uint32_t j = i + 1; j < Vertices; j++)
             {

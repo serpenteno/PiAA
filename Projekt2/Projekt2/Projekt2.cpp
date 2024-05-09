@@ -176,11 +176,14 @@ int main()
             default:
                 return 1;
         }
-        cout << "Liczba wierzcho³ków: " << NumberOfVertices << endl;
-        cout << "Gêstoœæ grafu: " << GraphDensity << endl;
-        cout << "Typ reprezentacji grafu: " << RepresentationType_Opt << endl;
-        cout << "Ca³kowity czas wykonywania operacji: " << SummedTime / Repetition << " us" << endl;
-        system("pause");
+        if (!bSimulateDijkstra)
+        {
+            cout << "Liczba wierzcho³ków: " << NumberOfVertices << endl;
+            cout << "Gêstoœæ grafu: " << GraphDensity << endl;
+            cout << "Typ reprezentacji grafu: " << RepresentationType_Opt << endl;
+            cout << "Ca³kowity czas wykonywania operacji: " << SummedTime / Repetition << " us" << endl;
+            system("pause");
+        }
     }
 
     return 0;
