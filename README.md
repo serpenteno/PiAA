@@ -10,3 +10,10 @@ Implementacja algorytmów sortowania:
 Implementacja algorytmu Dijkstry dla grafów o różnej gęstości, reprezentowanego przez:
 - Macierz sąsiedztwa
 - Listę sąsiedztwa
+
+# Projekt 3 - Gry & AI
+Implementacja sztucznej inteligencji w grze "Kółko i krzyżyk" w wykorzystaniem strategi Minimax
+Gracz ma możliwość zdefiniowania:
+- Rozmiaru planszy
+- Długości łancucha symboli wyznaczających warunek wygranej
+- Głebokości działania rekurencji algorytmu Minimax
