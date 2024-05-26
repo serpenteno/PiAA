@@ -194,12 +194,12 @@ EGameState UBoard::CheckGameState()
 					AISymbolsChain = 0;
 				}
 
-				if (PlayerSymbolsChain >= WinCondition)
+				if (PlayerSymbolsChain == WinCondition)
 				{
 					return EGameState::PlayerWins;
 				}
 
-				if (PlayerSymbolsChain >= WinCondition)
+				if (PlayerSymbolsChain == WinCondition)
 				{
 					return EGameState::AIWins;
 				}
@@ -207,28 +207,28 @@ EGameState UBoard::CheckGameState()
 		}
 	}
 
-	for (uint32_t Row = 0; Row <= Size - WinCondition; Row++)
+	for (uint32_t Row = Size - 1; Row >= WinCondition; Row--)
 	{
-		for (uint32_t Column = WinCondition - 1; Column < Size; Column++)
+		for (uint32_t Column = 0; Column <= Size - WinCondition; Column++)
 		{
 			PlayerSymbolsChain = 0;
 			AISymbolsChain = 0;
 
 			for (uint32_t Chain = 0; Chain < WinCondition; Chain++)
 			{
-				if (CheckSymbol(Row + Chain, Column - Chain) == PlayerSymbol)
+				if (CheckSymbol(Row - Chain, Column + Chain) == PlayerSymbol)
 				{
 					PlayerSymbolsChain++;
 					AISymbolsChain = 0;
 				}
 
-				if (CheckSymbol(Row + Chain, Column - Chain) == AISymbol)
+				if (CheckSymbol(Row - Chain, Column + Chain) == AISymbol)
 				{
 					AISymbolsChain++;
 					PlayerSymbolsChain = 0;
 				}
 
-				if (CheckSymbol(Row + Chain, Column - Chain) == ESymbol::None)
+				if (CheckSymbol(Row - Chain, Column + Chain) == ESymbol::None)
 				{
 					PlayerSymbolsChain = 0;
 					AISymbolsChain = 0;
