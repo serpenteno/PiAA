@@ -6,10 +6,10 @@ const uint32_t WindowResolution = 1024;
 class UBoard;
 class UArtificialIntelligence;
 
-class Game
+class UGame
 {
 public:
-	Game(UBoard* Board, UArtificialIntelligence* AI);
+	UGame(UBoard* Board, UArtificialIntelligence* AI);
 
 	void Run();
 

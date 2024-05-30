@@ -4,14 +4,14 @@
 #include "Board.h"
 #include "ArtificialIntelligence.h"
 
-Game::Game(UBoard* Board, UArtificialIntelligence* AI)
+UGame::UGame(UBoard* Board, UArtificialIntelligence* AI)
 {
 	this->Window = new sf::RenderWindow(sf::VideoMode(WindowResolution, WindowResolution), "Tic Tac Toe");
 	this->GameBoard = Board;
 	this->GameAI = AI;
 }
 
-void Game::Run()
+void UGame::Run()
 {
 	while (this->Window->isOpen())
 	{
@@ -20,7 +20,7 @@ void Game::Run()
 	}
 }
 
-void Game::Render()
+void UGame::Render()
 {
     Window->clear(sf::Color::White);
 
@@ -66,7 +66,7 @@ void Game::Render()
     Window->display();
 }
 
-void Game::HandleEvents()
+void UGame::HandleEvents()
 {
     sf::Event Event;
 

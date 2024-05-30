@@ -207,7 +207,7 @@ EGameState UBoard::CheckGameState()
 		}
 	}
 
-	for (uint32_t Row = Size - 1; Row >= WinCondition; Row--)
+	for (uint32_t Row = Size - 1; Row >= WinCondition - 1; Row--)
 	{
 		for (uint32_t Column = 0; Column <= Size - WinCondition; Column++)
 		{

@@ -38,7 +38,7 @@ int main()
     UBoard Board(Size, WinCondition, PlayerSymbol);
     UArtificialIntelligence AI(Depth);
 
-    Game* NewGame = new Game(&Board, &AI);
+    UGame* NewGame = new UGame(&Board, &AI);
     NewGame->Run();
 
     return 0;
